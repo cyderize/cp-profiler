@@ -281,7 +281,9 @@ static inline void computeForNodeNary(NodeID nid, int nkids, Layout &layout, con
         const auto kid = tree.getChild(nid, i);
         layout.setChildOffset(kid, cur_x);
         x_offsets[i] = cur_x;
-        cur_x += distances[i];
+        if (i < nkids - 1) {
+            cur_x += distances[i];
+        }
     }
 
     /// calculate extents
