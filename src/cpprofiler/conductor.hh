@@ -80,6 +80,8 @@ class Conductor : public QMainWindow
     /// For a heatmap in the IDE
     void showNogood(QString url, QString name, bool record);
 
+    void showExecutionWindow(ExecutionWindow& e);
+
   private:
     void saveExecution(Execution *e);
 

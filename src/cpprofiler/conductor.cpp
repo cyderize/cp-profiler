@@ -636,6 +636,7 @@ void Conductor::showTraditionalView(Execution *e)
 
     auto &window = getExecutionWindow(e);
 
+    emit showExecutionWindow(window);
     window.show();
 }
 } // namespace cpprofiler
