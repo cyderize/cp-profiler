@@ -41,7 +41,7 @@
 namespace cpprofiler
 {
 
-Conductor::Conductor(Options opt) : options_(opt)
+Conductor::Conductor(Options opt, QWidget* parent) : QMainWindow(parent), options_(opt)
 {
 
     setWindowTitle("CP-Profiler");
@@ -320,9 +320,9 @@ ExecutionWindow &Conductor::getExecutionWindow(Execution *e)
     /// create new one if doesn't already exist
     if (maybe_view == execution_windows_.end())
     {
-        execution_windows_[e] = utils::make_unique<ExecutionWindow>(*e);
+        execution_windows_[e] = new ExecutionWindow(*e, this);
 
-        const auto ex_window = execution_windows_[e].get();
+        const auto ex_window = execution_windows_[e];
 
         connect(ex_window, &ExecutionWindow::needToSaveSearch, [this, e]() {
             saveSearch(e);
@@ -353,8 +353,8 @@ void Conductor::mergeTrees(Execution *e1, Execution *e2)
     auto merger = new analysis::TreeMerger(*e1, *e2, tree, result, orig_locs);
 
     connect(merger, &analysis::TreeMerger::finished, this,
-            [e1, e2, tree, result]() {
-                auto window = new analysis::MergeWindow(*e1, *e2, tree, result);
+            [this, e1, e2, tree, result]() {
+                auto window = new analysis::MergeWindow(*e1, *e2, tree, result, this);
                 window->show();
             });
 
@@ -373,8 +373,8 @@ void Conductor::runNogoodAnalysis(Execution *e1, Execution *e2)
     auto merger = new analysis::TreeMerger(*e1, *e2, tree, result, orig_locs);
 
     connect(merger, &analysis::TreeMerger::finished, this,
-            [e1, e2, tree, result]() {
-                auto window = new analysis::MergeWindow(*e1, *e2, tree, result);
+            [this, e1, e2, tree, result]() {
+                auto window = new analysis::MergeWindow(*e1, *e2, tree, result, this);
                 window->show();
                 window->runNogoodAnalysis();
             });

@@ -68,7 +68,7 @@ class MergeWindow : public QMainWindow
     void hideFailed();
 
   public:
-    MergeWindow(Execution &ex_l, Execution &ex_r, std::shared_ptr<tree::NodeTree> nt, std::shared_ptr<MergeResult> res);
+    MergeWindow(Execution &ex_l, Execution &ex_r, std::shared_ptr<tree::NodeTree> nt, std::shared_ptr<MergeResult> res, QWidget* parent = nullptr);
     ~MergeWindow();
 
     tree::NodeTree &getTree();

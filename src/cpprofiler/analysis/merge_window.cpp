@@ -21,8 +21,8 @@ namespace cpprofiler
 namespace analysis
 {
 
-MergeWindow::MergeWindow(Execution &ex_l, Execution &ex_r, std::shared_ptr<tree::NodeTree> nt, std::shared_ptr<MergeResult> res)
-    : ex_l_(ex_l), ex_r_(ex_r), nt_(nt), merge_result_(res)
+MergeWindow::MergeWindow(Execution &ex_l, Execution &ex_r, std::shared_ptr<tree::NodeTree> nt, std::shared_ptr<MergeResult> res, QWidget* parent)
+    : QMainWindow(parent), ex_l_(ex_l), ex_r_(ex_r), nt_(nt), merge_result_(res)
 {
 
     initOrigLocations();

@@ -54,8 +54,8 @@ LanternMenu::LanternMenu() : QWidget()
     });
 }
 
-ExecutionWindow::ExecutionWindow(Execution &ex)
-    : execution_(ex)
+ExecutionWindow::ExecutionWindow(Execution &ex, QWidget* parent)
+    : QMainWindow(parent), execution_(ex)
 {
     const auto &tree = ex.tree();
     traditional_view_.reset(new tree::TraditionalView(tree, ex.userData(), ex.solver_data()));

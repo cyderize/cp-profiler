@@ -39,7 +39,7 @@ class Conductor : public QMainWindow
     Q_OBJECT
 
   public:
-    Conductor(Options opt);
+    Conductor(Options opt, QWidget* parent = nullptr);
 
     ~Conductor();
 
@@ -112,7 +112,7 @@ class Conductor : public QMainWindow
 
     std::unordered_map<ExecID, ExecMeta> exec_meta_;
 
-    std::unordered_map<const Execution *, std::unique_ptr<ExecutionWindow>>
+    std::unordered_map<const Execution *, ExecutionWindow*>
         execution_windows_;
 
   public slots:

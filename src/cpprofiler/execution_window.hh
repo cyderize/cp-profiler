@@ -78,7 +78,7 @@ public:
   /// Show a window with all bookmarks
   void showBookmarks() const;
 
-  ExecutionWindow(Execution &ex);
+  ExecutionWindow(Execution &ex, QWidget* parent = nullptr);
   ~ExecutionWindow();
 
   Execution& execution()
