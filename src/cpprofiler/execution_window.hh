@@ -81,6 +81,11 @@ public:
   ExecutionWindow(Execution &ex);
   ~ExecutionWindow();
 
+  Execution& execution()
+  {
+      return execution_;
+  }
+
 public slots:
 
   /// Remove currently selected node; then select its parent
