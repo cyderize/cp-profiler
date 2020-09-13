@@ -82,6 +82,7 @@ class Conductor : public QMainWindow
 
     void showExecutionWindow(ExecutionWindow& e);
 
+    void showMergeWindow(analysis::MergeWindow& m);
   private:
     void saveExecution(Execution *e);
 

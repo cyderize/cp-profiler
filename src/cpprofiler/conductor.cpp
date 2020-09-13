@@ -355,6 +355,7 @@ void Conductor::mergeTrees(Execution *e1, Execution *e2)
     connect(merger, &analysis::TreeMerger::finished, this,
             [this, e1, e2, tree, result]() {
                 auto window = new analysis::MergeWindow(*e1, *e2, tree, result, this);
+                emit showMergeWindow(*window);
                 window->show();
             });
 
@@ -375,6 +376,7 @@ void Conductor::runNogoodAnalysis(Execution *e1, Execution *e2)
     connect(merger, &analysis::TreeMerger::finished, this,
             [this, e1, e2, tree, result]() {
                 auto window = new analysis::MergeWindow(*e1, *e2, tree, result, this);
+                emit showMergeWindow(*window);
                 window->show();
                 window->runNogoodAnalysis();
             });
